@@ -23,5 +23,12 @@ Encore
     });
 
 //.enableTypeScriptLoader()
-
-module.exports = Encore.getWebpackConfig();
+let config = Encore.getWebpackConfig();
+config.output = {
+    ...config.output,
+    library: {
+        name: '@mashbo/js-template-bundle',
+        type: 'umd',
+    },
+}
+module.exports = config;

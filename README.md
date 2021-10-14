@@ -24,6 +24,8 @@ function customOverlay() {
 }
 ```
 
+alpine type arent necessarily alpine components, they can be utilities that are used in the alpine component lifecycle but passing to the window object is still required.
+
 ### Initialisers
 
 initialiser components are used as normal functions, usually initialising another library or directly referencing dom elements.
@@ -42,8 +44,8 @@ Component | Type |
 | overlayButton | alpine |
 | dropoutMenu | alpine |
 | tabs | alpine |
-| htmxDispatch | initialiser |
-| initialiseDatePicker | initialiser |
+| htmxDispatch | alpine |
+| initialiseDatePicker | alpine |
 | initialiseMultiSelect | initialiser |
 
 

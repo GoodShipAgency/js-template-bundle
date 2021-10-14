@@ -1,7 +1,7 @@
 import flatpickr from 'flatpickr';
 import walkParents from '../helpers/dom-walker';
 
-export function initialiseDatePicker(id, options = {}) {
+export function datepicker(id, options = {}) {
     options.altInput = options.altInput ? options.altInput : true;
     options.mode = options.mode ? 'range' : 'single';
 

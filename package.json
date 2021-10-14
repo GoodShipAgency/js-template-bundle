@@ -1,10 +1,14 @@
 {
-    "name": "mashbo-template-bundle",
+    "name": "@mashbo/js-template-bundle",
     "description": "Component library used in tandem with the Mashbo/Template Bundle.",
     "main": "dist/index.js",
+    "files": [
+        "dist"
+    ],
     "src": "src/index.js",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "license": "UNLICENSED",
+    "Author": "Mashbo",
     "devDependencies": {
         "@symfony/webpack-encore": "^1.4.0",
         "core-js": "^3.13.1",
@@ -22,5 +26,8 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
+    },
+    "publishConfig":{
+        "@mashbo:registry": "https://gitlab.com/api/v4/projects/30442816/packages/npm/"
     }
 }

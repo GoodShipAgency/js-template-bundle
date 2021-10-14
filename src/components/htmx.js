@@ -1,3 +1,5 @@
+import htmx from 'htmx.org';
+
 export function htmxDispatch(details) {
     if (!details || !details.name) {
         return;
