@@ -6,7 +6,7 @@
         "dist"
     ],
     "src": "src/index.js",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "license": "UNLICENSED",
     "Author": "Mashbo",
     "devDependencies": {
@@ -25,7 +25,8 @@
     "scripts": {
         "dev": "encore dev",
         "watch": "encore dev --watch",
-        "build": "encore production --progress"
+        "build": "encore production --progress",
+        "prepublishOnly": "encore production --progress"
     },
     "publishConfig":{
         "@mashbo:registry": "https://gitlab.com/api/v4/projects/30442816/packages/npm/"
