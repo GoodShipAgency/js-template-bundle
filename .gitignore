@@ -1,0 +1,30 @@
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+
+###> symfony/phpunit-bridge ###
+.phpunit
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+node_modules
+
+dist/*
+tmp-phpqa/*
+.deptrac.cache
+enveloper/enveloper-data/enveloper.sqlite
+tests/userdata/
+.DS_Store
+.idea
+.vscode
+.task
+~$*
+/config/secrets/*/*.decrypt.private.php
+infrastructure/ansible/roles/deployments
+.php-cs-fixer.cache
