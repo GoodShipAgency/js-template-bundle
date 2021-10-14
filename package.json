@@ -1,0 +1,26 @@
+{
+    "name": "mashbo-template-bundle",
+    "description": "Component library used in tandem with the Mashbo/Template Bundle.",
+    "main": "dist/index.js",
+    "src": "src/index.js",
+    "version": "0.0.1",
+    "license": "UNLICENSED",
+    "devDependencies": {
+        "@symfony/webpack-encore": "^1.4.0",
+        "core-js": "^3.13.1",
+        "glob-all": "^3.2.1",
+        "path": "^0.12.7",
+        "webpack-notifier": "^1.13.0"
+    },
+    "dependencies": {
+        "@popperjs/core": "^2.9.2",
+        "flatpickr": "Mashbo/flatpickr#2054-close-flatpickr-with-appendto-option",
+        "htmx.org": "^1.4.1",
+        "multiselect-dropdown": "^2.0.2"
+    },
+    "scripts": {
+        "dev": "encore dev",
+        "watch": "encore dev --watch",
+        "build": "encore production --progress"
+    }
+}
