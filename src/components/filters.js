@@ -16,7 +16,7 @@ export function filters() {
             this.tabsContainer = this.$refs.tabsContainer;
             this.fieldsContainer = this.$refs.fieldsContainer;
 
-            this.tabs = this.tabsContainer.children;
+            this.tabs = [...this.tabsContainer.children];
             this.url = new URL(location.href);
 
             this.setActiveTab(this.tabs[0]);
