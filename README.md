@@ -49,3 +49,7 @@ Component | Type |
 | initialiseMultiSelect | initialiser |
 
 
+# Deployment
+
+To deploy run: 
+`GITLAB_AUTH_TOKEN=${Auth_token} npm publish` 
