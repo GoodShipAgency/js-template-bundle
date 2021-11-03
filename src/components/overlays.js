@@ -45,9 +45,10 @@ export function overlayButton(overlayType, el, loadingIndicator) {
             event.preventDefault();
             let path = this.buttonEl.getAttribute('href');
             let target = this.buttonEl.dataset.target;
+            let fetchFresh = this.buttonEl.dataset.fetchFresh;
 
-            // Only replace content if previous request url is not the same.
-            if (window.previousHtmxUrl !== path) {
+            // Only replace content if previous request url is not the same, unless fetchFresh is enabled.
+            if (fetchFresh || window.previousHtmxUrl !== path) {
                 this.swapContent(path, target);
             }
 
