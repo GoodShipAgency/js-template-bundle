@@ -36,7 +36,7 @@ export function filters() {
             });
         },
         showActiveField() {
-            let formGroups = this.fieldsContainer.querySelectorAll('.form-group');
+            const formGroups = this.fieldsContainer.querySelectorAll('.form-group');
             formGroups.forEach((node) => {
                 if (node.dataset.rowId === this.openTab) {
                     if (!node.classList.contains('filters__field-row--open')) {
@@ -54,25 +54,30 @@ export function filters() {
             this.showActiveField();
         },
         closeFiltersDropout(event) {
-            let targetElement = event.target;
-            let allowedClickContainers = document.querySelectorAll('.js-filters-allow-clicks');
-            let cancelButton = document.querySelector('.js-filters-dropout__cancel-button');
-            let multiSelectOverlay = document.querySelector('.multi-select-options-overlay');
+            const targetElement = event.target;
+            const allowedClickContainers = document.querySelectorAll('.js-filters-allow-clicks');
+            const cancelButton = document.querySelector('.js-filters-dropout__cancel-button');
+            const multiSelectOverlay = document.querySelector('.multi-select-options-overlay');
 
             if (targetElement === cancelButton) {
                 this.showFilters = false;
                 return;
             }
-            let targetClass = targetElement.getAttribute('class');
 
-            let isFlatpickr =
+            const targetClass = targetElement.getAttribute('class');
+
+            const isFlatpickr =
                 (targetClass && targetClass.indexOf('flatpickr') !== -1) ||
-                (targetClass && targetClass.indexOf('numInput') !== -1);
+                (targetClass && targetClass.indexOf('numInput') !== -1) ||
+                walkParents(targetElement, null, 'flatpickr-calendar');
+
             if (isFlatpickr) {
                 return;
             }
 
-            for (let i = 0; i < allowedClickContainers.length; i++) {
+            const clickContainersLength = allowedClickContainers.length;
+
+            for (let i = 0; i < clickContainersLength; i++) {
                 if (checkIfNodeContains(allowedClickContainers[i], targetElement)) {
                     return;
                 }
@@ -87,33 +92,33 @@ export function filters() {
             this.showFilters = false;
         },
         removeFilter(event) {
-            let button = walkParents(event.target, 'button');
-            let rowId = button.dataset.rowId;
-            let elementsWithSameRowId = [
+            const button = walkParents(event.target, 'button');
+            const rowId = button.dataset.rowId;
+            const elementsWithSameRowId = [
                 ...document.querySelectorAll(`div[data-row-id="${rowId}"]`),
             ];
             if (!elementsWithSameRowId || !elementsWithSameRowId.length) return;
-            let inputContainerFilter = elementsWithSameRowId.filter((el) =>
+            const inputContainerFilter = elementsWithSameRowId.filter((el) =>
                 el.classList.contains('form-group')
             );
-            let inputContainer =
+            const inputContainer =
                 inputContainerFilter && inputContainerFilter.length
                     ? inputContainerFilter[0]
                     : null;
             if (!inputContainer) return;
-            let inputElements = inputContainer.querySelectorAll('input');
-            let selectElements = inputContainer.querySelectorAll('select');
+            const inputElements = inputContainer.querySelectorAll('input');
+            const selectElements = inputContainer.querySelectorAll('select');
 
             if (inputElements) {
                 inputElements &&
-                    inputElements.forEach((node) => {
-                        node.value = '';
-                    });
+                inputElements.forEach((node) => {
+                    node.value = '';
+                });
             }
 
             if (selectElements) {
                 selectElements.forEach((node) => {
-                    let hasEmptyValue = [...node.options].some(
+                    const hasEmptyValue = [...node.options].some(
                         (option) => option.value === ''
                     );
 
@@ -126,12 +131,12 @@ export function filters() {
                 });
             }
 
-            let submitButton = document.querySelector('.js-filters--submit-button');
+            const submitButton = document.querySelector('.js-filters--submit-button');
             submitButton.click();
         },
         removeAllFilters() {
-            let paramString = this.url.search.split('?')[1];
-            let params = paramString.split(/[&;]/g);
+            const paramString = this.url.search.split('?')[1];
+            const params = paramString.split(/[&;]/g);
 
             document.location.search =
                 '?' + params.filter((p) => !p.startsWith('filter_')).join('&');
