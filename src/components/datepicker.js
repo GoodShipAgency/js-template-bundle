@@ -19,6 +19,12 @@ export function datepicker(id, options = {}) {
         options.disable = [...(options.disable || []), disableWeekends];
     }
 
+    options.onOpen = (selectedDates, dateStr, instance) => {
+        if (selectedDates.length) return;
+
+        instance.setDate(new Date());
+    }
+
     flatpickr(id, options);
 }
 
