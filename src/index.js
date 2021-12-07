@@ -5,4 +5,5 @@ export { dropoutMenu } from './components/dropout-menu';
 export { overlay, overlayButton } from './components/overlays';
 export { tabs } from './components/tabs';
 export { filters } from './components/filters';
+export { disableButton, disableFormsOnSubmit } from './helpers/disable-button';
 export unsavedNotice from './directives/unsaved-notice';
