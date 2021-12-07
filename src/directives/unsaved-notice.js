@@ -3,7 +3,7 @@
  * watch for any changes within the form.
  * @param Alpine
  */
-export default function (Alpine) {
+export const unsavedNotice = function (Alpine) {
     Alpine.directive('unsaved-notice', (el, values, { cleanup }) => {
         let formIsDirty = false;
         const message =
@@ -45,4 +45,4 @@ export default function (Alpine) {
             window.removeEventListener('beforeunload', unloadPage);
         });
     });
-}
+};
