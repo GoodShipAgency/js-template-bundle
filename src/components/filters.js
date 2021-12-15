@@ -55,7 +55,9 @@ export function filters() {
         },
         closeFiltersDropout(event) {
             const targetElement = event.target;
-            const allowedClickContainers = document.querySelectorAll('.js-filters-allow-clicks');
+            const allowedClickContainers = document.querySelectorAll(
+                '.js-filters-allow-clicks'
+            );
             const cancelButton = document.querySelector('.js-filters-dropout__cancel-button');
             const multiSelectOverlay = document.querySelector('.multi-select-options-overlay');
 
@@ -107,11 +109,17 @@ export function filters() {
                     : null;
             if (!inputContainer) return;
             const inputElements = inputContainer.querySelectorAll('input');
+            const textAreaElements = inputContainer.querySelectorAll('textarea');
             const selectElements = inputContainer.querySelectorAll('select');
 
             if (inputElements) {
-                inputElements &&
                 inputElements.forEach((node) => {
+                    node.value = '';
+                });
+            }
+
+            if (textAreaElements) {
+                textAreaElements.forEach((node) => {
                     node.value = '';
                 });
             }
