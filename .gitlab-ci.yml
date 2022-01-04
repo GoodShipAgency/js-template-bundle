@@ -31,6 +31,8 @@ build:
 publish:
     stage: release
     before_script:
+        - curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm@6
+        - pnpm config set store-dir .pnpm-store
         - |
             {
               echo "@${CI_PROJECT_ROOT_NAMESPACE}:registry=${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/npm/"
