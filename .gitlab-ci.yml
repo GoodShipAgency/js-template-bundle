@@ -1,0 +1,42 @@
+default:
+    image: node:14
+    before_script:
+        - curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm@6
+        - pnpm config set store-dir .pnpm-store
+    cache:
+        key: ${CI_COMMIT_REF_SLUG}
+        paths:
+            - .pnpm-store
+
+workflow:
+    rules:
+        - if: $CI_COMMIT_BRANCH
+
+variables:
+    NPM_TOKEN: ${CI_JOB_TOKEN}
+
+stages:
+    - build
+    - release
+
+build:
+    stage: build
+    script:
+        - pnpm install --frozen-lockfile
+        - pnpm encore production
+    artifacts:
+        paths:
+            - dist/
+
+publish:
+    stage: release
+    before_script:
+        - |
+            {
+              echo "@${CI_PROJECT_ROOT_NAMESPACE}:registry=${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/npm/"
+              echo "${CI_API_V4_URL#https?}/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=\${CI_JOB_TOKEN}"
+            } | tee --append .npmrc
+    script:
+        - pnpm run semantic-release
+    rules:
+        - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
