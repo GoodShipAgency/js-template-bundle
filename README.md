@@ -50,6 +50,7 @@ Component | Type |
 
 
 # Deployment
+Deployment will happen automatically using semantic release commit messages. [Reference](https://github.com/semantic-release/semantic-release#commit-message-format)
 
-To deploy run: 
+To manually deploy run: 
 `GITLAB_AUTH_TOKEN=${Auth_token} npm publish` 
