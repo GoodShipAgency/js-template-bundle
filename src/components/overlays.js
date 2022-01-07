@@ -23,6 +23,9 @@ export function overlay(el) {
         close() {
             if (!this.isOpen) return;
             this.isOpen = false;
+
+            const alertContainer = this.parentEl.querySelector('.js-overlay-alert-container');
+            if (alertContainer) alertContainer.remove();
         },
         toggle(event) {
             this.isOpen ? this.close() : this.open(event);
