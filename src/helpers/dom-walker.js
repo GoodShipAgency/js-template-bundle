@@ -1,7 +1,7 @@
 /**
  *
  * @param el {node} - subject node
- * @param tag {string} - tag name
+ * @param tag {string|null} - tag name
  * @param classNames{[]} - class name
  * @returns {{node}|*|null} - returns element or null
  */
