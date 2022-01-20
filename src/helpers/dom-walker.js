@@ -2,10 +2,10 @@
  *
  * @param el {node} - subject node
  * @param tag {string} - tag name
- * @param className - class name
+ * @param classNames{[]} - class name
  * @returns {{node}|*|null} - returns element or null
  */
-function walkParents(el, tag, className) {
+export function walkParents(el, tag, classNames) {
     tag = tag ? tag.toUpperCase() : null;
 
     while (el.parentNode) {
@@ -14,11 +14,12 @@ function walkParents(el, tag, className) {
             return el;
         }
 
-        if (className && el.classList && el.classList.contains(className)) {
-            return el;
+        if (classNames && el.classList) {
+            // Convert to array if it isn't one.
+            if (!Array.isArray(classNames)) classNames = [classNames];
+
+            if ([...el.classList].some((subject) => classNames.includes(subject))) return el;
         }
     }
     return null;
 }
-
-export default walkParents;

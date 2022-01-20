@@ -1,4 +1,4 @@
-import walkParents from '../helpers/dom-walker';
+import { walkParents } from '../helpers/dom-walker';
 
 function checkIfNodeContains(parent, child) {
     return parent !== child && parent.contains(child);
@@ -71,7 +71,7 @@ export function filters() {
             const isFlatpickr =
                 (targetClass && targetClass.indexOf('flatpickr') !== -1) ||
                 (targetClass && targetClass.indexOf('numInput') !== -1) ||
-                walkParents(targetElement, null, 'flatpickr-calendar');
+                walkParents(targetElement, null, ['flatpickr-calendar']);
 
             if (isFlatpickr) {
                 return;
