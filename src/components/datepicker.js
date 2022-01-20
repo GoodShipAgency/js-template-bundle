@@ -1,5 +1,5 @@
 import flatpickr from 'flatpickr';
-import walkParents from '../helpers/dom-walker';
+import { walkParents } from '../helpers/dom-walker';
 
 export function datepicker(id, options = {}) {
     options.altInput = options.altInput ? options.altInput : true;
@@ -7,7 +7,10 @@ export function datepicker(id, options = {}) {
 
     let subjectNode = document.querySelector(id);
     let slideoverContainer = subjectNode
-        ? walkParents(subjectNode, null, 'js-slideout-container')
+        ? walkParents(subjectNode, null, [
+              'js-slideout-container',
+              'js-disable-datepicker-init',
+          ])
         : null;
 
     if (slideoverContainer) {
@@ -23,7 +26,7 @@ export function datepicker(id, options = {}) {
         if (selectedDates.length) return;
 
         instance.setDate(new Date());
-    }
+    };
 
     flatpickr(id, options);
 }
