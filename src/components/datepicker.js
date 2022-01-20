@@ -2,15 +2,16 @@ import flatpickr from 'flatpickr';
 import { walkParents } from '../helpers/dom-walker';
 
 export function datepicker(id, options = {}) {
+    const subjectNode = document.querySelector(id);
+
+    // If disabled, return early
+    if (walkParents(subjectNode, null, ['js-disable-datepicker-init'])) return;
+
     options.altInput = options.altInput ? options.altInput : true;
     options.mode = options.mode ? 'range' : 'single';
 
-    let subjectNode = document.querySelector(id);
-    let slideoverContainer = subjectNode
-        ? walkParents(subjectNode, null, [
-              'js-slideout-container',
-              'js-disable-datepicker-init',
-          ])
+    const slideoverContainer = subjectNode
+        ? walkParents(subjectNode, null, ['js-slideout-container'])
         : null;
 
     if (slideoverContainer) {
