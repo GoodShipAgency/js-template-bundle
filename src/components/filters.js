@@ -143,11 +143,7 @@ export function filters() {
             submitButton.click();
         },
         removeAllFilters() {
-            const paramString = this.url.search.split('?')[1];
-            const params = paramString.split(/[&;]/g);
-
-            document.location.search =
-                '?' + params.filter((p) => !p.startsWith('filter_')).join('&');
+            document.location.search = '';
         },
     };
 }
