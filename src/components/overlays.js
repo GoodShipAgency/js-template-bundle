@@ -75,3 +75,21 @@ export function overlayButton(overlayType, el, loadingIndicator) {
         },
     };
 }
+
+export function overlayFormResponseError(event, formId) {
+    const errorContainer = document.body.querySelector(`[data-form-error-id="${formId}"]`);
+    const errorContent = errorContainer.querySelector('h3');
+    const today = new Date();
+    const date = `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`;
+    const time = `${today.getHours()}:${today.getMinutes()}`;
+
+    errorContent.innerHTML = `An error occurred at ${date} @ ${time}. Please reload the page and try again. If this problem persists, please quote the time shown.`;
+    errorContainer.classList.remove('hidden');
+}
+
+export function overlayFormClearErrors(formId) {
+    const errorContainer = document.body.querySelector(`[data-form-error-id="${formId}"]`);
+    if (!errorContainer.classList.contains('hidden')) {
+        errorContainer.classList.add('hidden');
+    }
+}
