@@ -14,3 +14,4 @@ export { disableButton, disableFormsOnSubmit } from './helpers/disable-button';
 export { walkParents } from './helpers/dom-walker';
 export { unsavedNotice } from './directives/unsaved-notice';
 export { multiSelect } from './directives/multi-select';
+export { datepickerDirective } from './directives/datepicker';
