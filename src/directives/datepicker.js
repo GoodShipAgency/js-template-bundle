@@ -2,8 +2,8 @@ import flatpickr from 'flatpickr';
 import { walkParents } from '../helpers/dom-walker';
 
 /**
- * How to use: Place the html attribute `x-multi-select` on any form element and that will automatically
- * watch initialise a multi-select component
+ * How to use: Place the html attribute `x-datepicker` on any form element/input and that will automatically
+ * watch initialise a datepicker component
  * @param Alpine
  */
 export const datepickerDirective = function (Alpine) {
@@ -16,6 +16,9 @@ export const datepickerDirective = function (Alpine) {
         const slideoverContainer = el
             ? walkParents(el, null, ['js-slideout-container'])
             : null;
+
+        options.altInput = options.altInput ? options.altInput : true;
+        options.mode = options.mode ? 'range' : 'single';
 
         if (slideoverContainer) {
             options.appendTo = slideoverContainer;
@@ -34,8 +37,9 @@ export const datepickerDirective = function (Alpine) {
 
         const instance = flatpickr(el, options);
 
-        // Disable caching on the calendar elements
+        // Disable caching on the calendar elements and alt inputs
         instance.calendarContainer.dataset.turboCache = 'false';
+        instance.altInput ? (instance.altInput.dataset.turboCache = 'false') : null;
 
         cleanup(() => {
             if (instance) {
