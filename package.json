@@ -6,7 +6,7 @@
         "dist"
     ],
     "src": "src/index.js",
-    "version": "1.3.0",
+    "version": "1.4.0",
     "license": "UNLICENSED",
     "Author": "Mashbo",
     "devDependencies": {
