@@ -5,9 +5,9 @@
     "exports": {
         ".": "./dist/index.js",
         "./*": "./src/index.js",
-        "./directives/": "./src/directives",
-        "./components/": "./src/components",
-        "./helpers/": "./src/helpers"
+        "./directives/": "./src/directives/",
+        "./components/": "./src/components/",
+        "./helpers/": "./src/helpers/"
     },
     "files": [
         "dist",
