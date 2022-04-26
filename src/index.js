@@ -15,5 +15,6 @@ export { walkParents } from './helpers/dom-walker';
 export { dispatchWindowEvent } from './helpers/dispatch-window-event';
 export { unsavedNotice } from './directives/unsaved-notice';
 export { multiSelect } from './directives/multi-select';
+export { datepickerDirective } from './directives/datepicker';
 export { slideoutForm } from './directives/slideout-form';
 export { disableOnSuccess } from './directives/slideout-button';
