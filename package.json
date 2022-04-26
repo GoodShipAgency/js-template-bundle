@@ -4,8 +4,10 @@
     "main": "dist/index.js",
     "exports": {
         ".": "./dist/index.js",
-        "./test": "./src/index.js",
-        "./src/": "./src/"
+        "./*": "./src/index.js",
+        "./directives/": "./src/directives",
+        "./components/": "./src/components",
+        "./helpers/": "./src/helpers"
     },
     "files": [
         "dist",
