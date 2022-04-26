@@ -2,8 +2,13 @@
     "name": "@mashbo/js-template-bundle",
     "description": "Component library used in tandem with the Mashbo/Template Bundle.",
     "main": "dist/index.js",
+    "exports": {
+        ".": "./dist/index.js",
+        "./src/": "./src/"
+    },
     "files": [
-        "dist"
+        "dist",
+        "src"
     ],
     "src": "src/index.js",
     "version": "1.4.0",
