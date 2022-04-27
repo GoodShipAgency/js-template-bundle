@@ -14,7 +14,7 @@
         "src"
     ],
     "src": "src/index.js",
-    "version": "1.4.4",
+    "version": "1.4.5",
     "license": "UNLICENSED",
     "Author": "Mashbo",
     "devDependencies": {
