@@ -1,4 +1,4 @@
-export { htmxDispatch } from './components/htmx';
+export { htmxDispatch, htmxSwapOn422 } from './components/htmx';
 export { datepicker } from './components/datepicker';
 export { initialiseMultiSelect } from './components/multi-select';
 export { dropoutMenu } from './components/dropout-menu';
