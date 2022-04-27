@@ -49,7 +49,10 @@ export const slideoutForm = function (Alpine) {
                 formName,
                 htmxDetails: event.detail,
             });
-            overlayFormResponseError(event, formId);
+
+            if (event.detail.xhr.status !== 422) {
+                overlayFormResponseError(event, formId);
+            }
         }
 
         function sendError(event) {
@@ -58,7 +61,10 @@ export const slideoutForm = function (Alpine) {
                 formName,
                 htmxDetails: event.detail,
             });
-            overlayFormResponseError(event, formId);
+
+            if (event.detail.xhr.status !== 422) {
+                overlayFormResponseError(event, formId);
+            }
         }
     });
 };
