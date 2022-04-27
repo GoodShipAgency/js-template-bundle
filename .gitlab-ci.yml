@@ -26,7 +26,7 @@ build:
         - pnpm install --frozen-lockfile
     artifacts:
         paths:
-            - dist/
+            - src/
 
 publish:
     stage: release
