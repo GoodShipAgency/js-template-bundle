@@ -11,6 +11,11 @@ How to use
 
 Important:
 Parent element should not be be an inline element like span and should have a relative positioning property.
+
+Also this css is required:
+.popper-target .dropout__menu-container {
+    display: block !important;
+}
 */
 const initialModifiers = [
     {
@@ -38,6 +43,8 @@ export function dropoutMenu(parentEl) {
         dropoutButton: parentEl.querySelector('.js-dropout-trigger'),
         dropoutMenu: parentEl.querySelector('.js-dropout-menu'),
         popperInstance: null,
+        popperTarget: document.querySelector('.popper-target'),
+        popperEl: null,
         init() {
             if (!this.dropoutButton) {
                 this.dropoutButton = parentEl.querySelector('.js-dropout-trigger');
@@ -45,28 +52,34 @@ export function dropoutMenu(parentEl) {
             if (!this.dropoutMenu) {
                 this.dropoutMenu = parentEl.querySelector('.js-dropout-menu');
             }
+            if (!this.popperTarget) {
+                this.popperTarget = document.querySelector('.popper-target');
+            }
         },
         initialisePopper() {
-            if (!this.popperInstance) {
-                if (this.dropoutButton && this.dropoutMenu) {
-                    this.popperInstance = createPopper(this.dropoutButton, this.dropoutMenu, {
-                        placement: 'bottom-end',
-                        modifiers: initialModifiers,
-                    });
-                }
+            this.createMenu();
+            let popperEl = this.popperEl;
+
+            if (this.dropoutButton && this.dropoutMenu) {
+                this.popperInstance = createPopper(this.dropoutButton, popperEl, {
+                    placement: 'bottom-end',
+                    modifiers: initialModifiers,
+                });
             }
         },
         toggleMenu() {
-            // initilise the popper instance on toggle so we dont have rogue popper instances.
-            if (!this.popperInstance) {
-                this.initialisePopper();
-            }
-
             if (this.dropoutMenu.hasAttribute('data-show')) {
                 this.closeMenu();
             } else {
+                this.initialisePopper();
                 this.openMenu();
             }
+        },
+        createMenu() {
+            let tempEl = document.createElement('div');
+            tempEl.innerHTML = this.dropoutMenu.outerHTML;
+
+            this.popperEl = this.popperTarget.appendChild(tempEl);
         },
         openMenu() {
             if (this.popperInstance) {
@@ -86,14 +99,11 @@ export function dropoutMenu(parentEl) {
         closeMenu() {
             if (this.popperInstance) {
                 this.dropoutMenu.removeAttribute('data-show');
+                this.popperEl.remove();
+                this.popperEl = null;
 
-                // Disable the event listeners
-                this.popperInstance.setOptions({
-                    modifiers: [
-                        ...initialModifiers,
-                        { name: 'eventListeners', enabled: false },
-                    ],
-                });
+                this.popperInstance.destroy();
+                this.popperInstance = '';
             }
         },
     };
