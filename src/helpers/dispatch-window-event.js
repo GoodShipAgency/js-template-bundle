@@ -1,4 +1,4 @@
-export function dispatchWindowEvent(name, el, details) {
+export function dispatchWindowEvent(name, details) {
     const evt = new CustomEvent(name, {
         detail: details,
         bubbles: true,
