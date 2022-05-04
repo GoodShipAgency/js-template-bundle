@@ -1,4 +1,5 @@
 import htmx from 'htmx.org';
+import { dispatchWindowEvent } from '../helpers/dispatch-window-event';
 
 const defaultLoadingIndicator = `
     <div class="flex flex-wrap h-full items-center justify-center w-full overlays-default-loading-indicator">
@@ -33,18 +34,17 @@ export function overlay(el) {
     };
 }
 
-export function overlayButton(overlayType, el, loadingIndicator) {
+export function overlayButton(overlayType, el, loadingIndicator, confirmationDialogOptions) {
     return {
         parentEl: null,
         buttonEl: null,
-        confirmationOpen: false,
         overlayType: '',
         init() {
             this.parentEl = el;
             this.buttonEl = el.querySelector(':scope > a');
             this.overlayType = overlayType;
         },
-        open(dispatch, event) {
+        open(event) {
             event.preventDefault();
             let path = this.buttonEl.getAttribute('href');
             let target = this.buttonEl.dataset.target;
@@ -55,7 +55,7 @@ export function overlayButton(overlayType, el, loadingIndicator) {
             }
 
             window.previousHtmxUrl = path;
-            dispatch(`${this.overlayType}-open`);
+            dispatchWindowEvent(`${this.overlayType}-open`);
         },
         swapContent(path, target) {
             // Remove the last content
@@ -67,11 +67,11 @@ export function overlayButton(overlayType, el, loadingIndicator) {
         },
         openConfirmation(event) {
             event.preventDefault();
-            this.confirmationOpen = true;
-        },
-        closeConfirmation(event) {
-            event.preventDefault();
-            this.confirmationOpen = false;
+
+            dispatchWindowEvent('open-confirmation-modal', {
+                confirmCallback: this.open.bind(this),
+                dialogText: confirmationDialogOptions,
+            });
         },
     };
 }

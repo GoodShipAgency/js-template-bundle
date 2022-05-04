@@ -28,7 +28,7 @@ export const slideoutForm = function (Alpine) {
             el.querySelector(`button#${formId}_submit`).disabled = false;
 
             if (event.detail.successful) {
-                dispatchWindowEvent('slideout-form-success', el, {
+                dispatchWindowEvent('slideout-form-success', {
                     formId,
                     formName,
                     flowName,
@@ -44,7 +44,7 @@ export const slideoutForm = function (Alpine) {
         }
 
         function responseError(event) {
-            dispatchWindowEvent('slideout-form-error', el, {
+            dispatchWindowEvent('slideout-form-error', {
                 formId,
                 formName,
                 htmxDetails: event.detail,
@@ -56,7 +56,7 @@ export const slideoutForm = function (Alpine) {
         }
 
         function sendError(event) {
-            dispatchWindowEvent('slideout-form-error', el, {
+            dispatchWindowEvent('slideout-form-error', {
                 formId,
                 formName,
                 htmxDetails: event.detail,
