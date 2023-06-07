@@ -10,8 +10,8 @@ function disableFormsOnSubmit() {
     const allForms = document.body.querySelectorAll('form:not([hx-target])');
     if (allForms.length) {
         allForms.forEach((form) => {
-            form.addEventListener('submit', () => {
-                disableButton(form.querySelector('button[type="submit"]'));
+            form.addEventListener('submit', (event) => {
+                disableButton(event.target.querySelector('button[type="submit"]'));
             });
         });
     }
