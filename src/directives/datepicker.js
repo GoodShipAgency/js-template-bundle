@@ -24,6 +24,14 @@ export const datepickerDirective = function (Alpine) {
             options.appendTo = slideoverContainer;
         }
 
+        // Disable days
+        if (options.disableDays) {
+            options.disable = [
+                ...(options.disable || []),
+                (date) => disableDays(date, options.disableDays),
+            ];
+        }
+
         // Disable weekends
         if (options.disableWeekends) {
             options.disable = [...(options.disable || []), disableWeekends];
@@ -49,7 +57,17 @@ export const datepickerDirective = function (Alpine) {
     });
 };
 
-function disableWeekends(date) {
+/**
+ *
+ * @param {Object} date - flatpickr date object
+ * @param {Array} days - array of days of the week that should be disabled [0,6] = saturday & sunday [1,2,3] = monday tuesday & wednesday.
+ * @returns {*}
+ */
+function disableDays(date, days) {
     // return true to disable
-    return date.getDay() === 0 || date.getDay() === 6;
+    return days.includes(date.getDay());
+}
+
+function disableWeekends(date) {
+    return disableDays(date, [0, 6]);
 }
