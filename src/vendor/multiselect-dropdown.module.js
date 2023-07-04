@@ -28,7 +28,7 @@ export default class multiSelect {
 
         select.classList.add('multi-select-element');
         select.multiple = true;
-        select.style.display = 'none';
+        select.classList.add('sr-only');
         select.multiSelectInitialised = true;
 
         this.element.classList.add('multi-select');
