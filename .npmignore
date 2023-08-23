@@ -1,5 +1,4 @@
 .npmrc
 .prettierrc
 webpack.config.js
-src/
 node_modules/

@@ -8,7 +8,7 @@ alternatively, if using pnpm:
 
 Every export is a function export meaning you just import using 
 
-`import { overlay, overlayButton, datepicker } from 'mashbo-template-library;`.
+`import { overlay, overlayButton } from 'mashbo-template-library/components/overlays;`.
 
 Once imported, reference the usage library table below to find which type of usage is needed.
 
@@ -35,18 +35,6 @@ import {initialiseDatePicker } from "mashbo-template-libary";
 
 initialiseDatePicker();
 ```
-
-# Usage Library
-
-Component | Type |
-| ------------- |:-------------:|
-| overlay | alpine |
-| overlayButton | alpine |
-| dropoutMenu | alpine |
-| tabs | alpine |
-| htmxDispatch | alpine |
-| initialiseDatePicker | alpine |
-| initialiseMultiSelect | initialiser |
 
 
 # Deployment

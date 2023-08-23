@@ -24,10 +24,9 @@ build:
     stage: build
     script:
         - pnpm install --frozen-lockfile
-        - pnpm encore production
     artifacts:
         paths:
-            - dist/
+            - src/
 
 publish:
     stage: release
